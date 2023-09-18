@@ -33,16 +33,12 @@ let importedModule = Python.import_module("module_name")
 
 print contents fn example:
 
+```mojo
 fn dump(self):
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print_no_newline("{")
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for i in range(self.size):
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if i > 0:
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_no_newline(", ")
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_no_newline(self.data.load(i))
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print("}")
+    print_no_newline("{")
+        for i in range(self.size):
+            if i > 0:
+                print_no_newline(", ")
+            print_no_newline(self.data.load(i))
+    print("}")
+```
