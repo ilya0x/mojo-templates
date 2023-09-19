@@ -27,6 +27,19 @@ from timeit import timeit
 
 
 def test_interop_func():
+    """
+    # Interoperability test
+
+    this function test that Python works inside Mojo
+
+    `Note: see interop_app.mojo`
+
+    code:
+    ```mojo
+    let test_module = Python.import_module("simple_interop")
+    test_module.test_interop_func()
+    ```
+    """
     print("Hello from Python!")
     a = np.array([1, 2, 3])
     print("I can even print a numpy array: ", a)
