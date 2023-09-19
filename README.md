@@ -84,7 +84,7 @@ def main():
 
 print contents fn example:
 
-```mojo
+``` mojo
 fn dump(self):
     print_no_newline("{")
         for i in range(self.size):
