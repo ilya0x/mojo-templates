@@ -28,8 +28,25 @@ syntax highlighter for Mojo Language.
 
 > These notes are updated on regular basis
 
-<!--TODO: Table of Contents -->
+<!--
+TODO: Table of Contents
 
+TODO: Snippets for Matrix Multiplication
+
+TODO: Snippets for Strong Type Checking
+
+TODO: Snippets of fn functions
+- with various argument type specifications preset:
+- all local variables declared:
+- raising exceptions explicitly declared with 'raises' function effect (placed
+  after the function argument list):
+
+TODO: Custom Constructors
+
+TODO: Custom Destructors
+
+TODO: Custom Copy and Move Constructors
+-->
 <br>
 
 ### SDK
@@ -41,11 +58,20 @@ A view of the Mojo SDK
 
 <br>
 
+### `main()` function
+
+Mojo requires a `main()` function to run the code:
+
+``` mojo
+def main():
+    print("Hello World")
+```
+
 ### Importing Python modules
 
 Example:
 
-``` python
+``` mojo
 from python import Python
 
 def main():
@@ -63,33 +89,46 @@ def main():
 > Currently Mojo error messages do not notify user that the Python module you're
 > trying to import is missing.
 
-### Snippets for Matrix Multiplication
+<br>
 
-### Snippets for Strong Type Checking
+### "Arguments" vs "Parameters"
 
-### Snippets of fn functions
+In Python "arguments" and "parameters" are fairly interchangeable for "things
+that are passed into functions." In Mojo they are different:
 
-- with various argument type specifications preset:
-- all local variables declared:
-- raising exceptions explicitly declared with 'raises' function effect (placed
-  after the function argument list):
+- "Parameters"
+  - use square braces: `[...]`
+  - are only compile-time values or types
+- "Arguments" and "expressions"
+  - use parentheses, like in Python: `(...)`
+  - are runtime or compile-time values
 
-### Custom Constructors
+Examples:
 
-### Custom Destructors
+<br>
 
-### Custom Copy and Move Constructors
+### Use of `fn` vs `def`
+
+#### `fn`
+
+- Strict: requires type annotations
+
+#### `def`
+
+Examples:
+
+<br>
 
 ### @value decorator
 
-print contents fn example:
+You can think of `@value` as an extension of Python’s `@dataclass` that also handles
+Mojo’s `__moveinit__` and `__copyinit__` methods.
 
-``` mojo
-fn dump(self):
-    print_no_newline("{")
-        for i in range(self.size):
-            if i > 0:
-                print_no_newline(", ")
-            print_no_newline(self.data.load(i))
-    print("}")
-```
+Example:
+
+<br>
+
+## Bringing in Python into Mojo
+
+There are several things that need to be changed in Python code to be able to
+run it as Mojo code:
