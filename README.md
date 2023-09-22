@@ -1,6 +1,6 @@
 # <img src="images/mojo-full-50.png" alt="Mojo">
 
-Mojo is (designer to become) a superset language to Python that is specifically designed and optimized
+Mojo is (designed to become) a superset language to Python that is specifically designed and optimized
 for AI programming. It is fully interoperable with Python modules and libraries.
 
 "Mojo gives Python superpowers." - Chris Lattner
