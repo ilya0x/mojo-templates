@@ -1,0 +1,10 @@
+# look into issue with Float adding additional numbers at end...
+
+
+from python import PythonObject
+
+
+fn main() raises:
+    let x: PythonObject = [2, 4, 6, 8, 10]
+
+    print(x[3])
