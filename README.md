@@ -5,8 +5,7 @@ for AI programming. It is fully interoperable with Python modules and libraries.
 
 "Mojo gives Python superpowers." - Chris Lattner
 
--
--
+<br>
 
 ## <img src="./images/template-20.png" alt="template"> Templates
 
@@ -58,9 +57,22 @@ A view of the Mojo SDK
 
 <br>
 
+### Use of `fn` vs `def`
+
+#### `fn`
+
+- Strict: requires type annotations
+
+#### `def`
+
+Examples:
+
+<br>
+
 ### `main()` function
 
-Mojo requires a `main()` function to run the code:
+Mojo (currently) requires a `main()` function to run your code (expressions are
+not yet supported on file scope level):
 
 ``` mojo
 def main():
@@ -102,18 +114,6 @@ that are passed into functions." In Mojo they are different:
 - "Arguments" and "expressions"
   - use parentheses, like in Python: `(...)`
   - are runtime or compile-time values
-
-Examples:
-
-<br>
-
-### Use of `fn` vs `def`
-
-#### `fn`
-
-- Strict: requires type annotations
-
-#### `def`
 
 Examples:
 
