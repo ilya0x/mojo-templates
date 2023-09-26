@@ -1,10 +1,26 @@
 # look into issue with Float adding additional numbers at end...
 
 
-from python import PythonObject
+struct Banana:
+    var Ripe: Bool
+    var Length: Float32
+    var Color: String
+
+    fn __init__(inout self, Ripe: Bool, Length: Float32, Color: String):
+        self.Ripe = Ripe
+        self.Length = Length
+        self.Color = Color
+
+    fn ripe(self, rhs: Banana) -> Bool:
+        return self.Ripe
+
+    fn length(self, rhs: Banana) -> Float32:
+        return self.Length
+
+    fn color(self, rhs: Banana) -> String:
+        return self.Color
 
 
-fn main() raises:
-    let x: PythonObject = [2, 4, 6, 8, 10]
-
-    print(x[3])
+fn main():
+    var my_banana = Banana(False, 4.7, "yellow")
+    print(my_banana.color(my_banana))
