@@ -153,6 +153,8 @@ fn main():
 
 `Bool` - Boolean value: can only be `True` or `False`
 
+`Vect` - Vector
+
 <br>
 
 ### `if` `elif` `else` statements
@@ -386,26 +388,73 @@ fn main():
 
 ### "Arguments" vs "Parameters"
 
-In Python "arguments" and "parameters" are fairly interchangeable for "things
-that are passed into functions." In Mojo they are different:
+- used to distinguish between runtime and compile-time values:
 
-- "Parameters"
-  - use square braces: `[...]`
-  - are only compile-time values or types
-- "Arguments" and "expressions"
-  - use parentheses, like in Python: `(...)`
-  - are runtime or compile-time values
+  - "Arguments" refer to runtime values. These are the values that are
+    passed into functions during the execution of the program.
 
-Examples:
+  - "Parameters" represent a compile-time value. These are values
+    that are determined during the compilation of the program, before it is run.
+
+    This distinction allows Mojo to align around words like "parameterized" and
+    "parametric" for compile-time metaprogramming.
+
+  - "Parameters" use square braces: `[...]`
+
+  - "Arguments" use parentheses: `(...)`
 
 <br>
 
-### @value decorator
+### `@value` decorator
 
-You can think of `@value` as an extension of Python’s `@dataclass` that also handles
-Mojo’s `__moveinit__` and `__copyinit__` methods.
+The `@value` decorator in Mojo is a tool that simplifies the process of defining
+structs by automatically generating a lot of boilerplate code for you. It's an
+extension of Python's `@dataclass` that also handles Mojo’s `__moveinit__` and
+`__copyinit__` methods.
 
-Example:
+When you use the `@value` decorator on a struct, it examines the fields of your
+type and generates any missing members:
+
+``` mojo
+@value
+struct MyPet:
+    var name: String
+    var age: Int
+```
+
+Mojo will notice that you do not have a member-wise initializer, a move
+constructor, or a copy constructor, and will synthesize these for you as if
+you had written:
+
+``` mojo
+struct MyPet:
+    var name: String
+    var age: Int
+
+    fn __init__(inout self, owned name: String, age: Int):
+    self.name = name^
+    self.age = age
+
+    fn __copyinit__(inout self, existing: Self):
+    self.name = existing.name
+    self.age = existing.age
+
+    fn __moveinit__(inout self, owned existing: Self):
+    self.name = existing.name^
+    self.age = existing.age
+```
+
+- The `@value` decorator only synthesizes these special methods when they don't
+already exist. If you want to override the behavior of one or more of these
+methods, you can define your own version.
+
+- Note: `@value` decorator only works on types whose members are copyable and/or
+movable. If your type contains any move-only fields, Mojo will not generate a
+copy constructor because it cannot copy those fields.
+
+- Currently, there is no way to suppress the generation of specific methods or
+customize generation, but arguments could be added to the `@value` generator to do
+this if there is demand.
 
 <br>
 
